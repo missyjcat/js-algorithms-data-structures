@@ -86,7 +86,7 @@ function end() {
 }
 
 function previous() {
-    return this.dataStore[this.pos--];
+    return this.dataStore[--this.pos];
 }
 
 function next() {
@@ -110,6 +110,17 @@ function hasNext() {
 
     return true;
 }
+
+/**
+  if (this.pos > this.listSize -1) {
+    return false;
+  } else {
+    return true;
+  }
+
+  // [2, 8] - i have listSize = 2, this.pos is 1 (value is 8), 1 is not greater than 1, so 
+  // true even though 1 is the last pos in the list?
+**/
 
 function currPos() {
     return this.pos;
