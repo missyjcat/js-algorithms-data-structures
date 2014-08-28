@@ -1,5 +1,5 @@
 var HashTable = function() {
-    this.table = new Array[137]; // Using 137 as the first prime number greater
+    this.table = new Array(137); // Using 137 as the first prime number greater
                                  // than 100 which helps to prevent collision
 
     this.simpleHash = simpleHash; // Starting with a simple hash function to
@@ -30,3 +30,23 @@ var simpleHash = function(data) {
 
     return total % this.table.length;
 };
+
+/** 
+ * Put an element into the hash table
+ * @param {String} data - string to add to hash table
+ */
+
+var put = function(data) {
+    // process the simpleHash to come up with the index of the new entry
+    var index = this.simpleHash(data);
+    this.table[index] = data;
+};
+
+var showDistro = function() {
+    for (var i = 0; i < this.table.length; i++) {
+        if (this.table[i]) {
+            print(i + " : " + this.table[i]);
+        }
+    }
+};
+
