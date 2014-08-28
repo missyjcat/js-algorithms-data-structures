@@ -6,6 +6,8 @@ var HashTable = function() {
                                   // show that this may not be enough to
                                   // prevent collision
     
+    this.betterHash = betterHornersHash;
+
     this.showDistro = showDistro; // print the hash table
 
     this.put = put;
@@ -31,6 +33,24 @@ var simpleHash = function(data) {
     return total % this.table.length;
 };
 
+var betterHornersHash = function(data) {
+    var total = 0,
+        i = 0,
+        H = 31; // a small-ish prime number as a constant multiplier
+
+    for (i = 0; i < data.length; i++) {
+        total += H * total + data.charCodeAt(i);
+    }
+
+    // Accounting for if total ends up being 0
+    if (total < 0) {
+        total += this.table.length - 1; // Why this?
+    }
+
+    total = total % this.table.length;
+    return parseInt(total);
+};
+
 /** 
  * Put an element into the hash table
  * @param {String} data - string to add to hash table
@@ -38,7 +58,7 @@ var simpleHash = function(data) {
 
 var put = function(data) {
     // process the simpleHash to come up with the index of the new entry
-    var index = this.simpleHash(data);
+    var index = this.betterHash(data);
     this.table[index] = data;
 };
 
