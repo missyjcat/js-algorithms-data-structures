@@ -12,7 +12,7 @@ var HashTable = function() {
 
     this.put = put;
 
-    // this.get = get;
+    this.get = get;
 };
 
 /**
@@ -61,9 +61,9 @@ var betterHornersHash = function(data) {
  * @param {String} data - string to add to hash table
  */
 
-var put = function(data) {
+var put = function(key, data) {
     // process the simpleHash to come up with the index of the new entry
-    var index = this.betterHash(data);
+    var index = this.betterHash(key);
     this.table[index] = data;
 };
 
