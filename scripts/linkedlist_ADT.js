@@ -42,8 +42,10 @@ var insert = function(newEl, existingEl) {
 var display = function() {
     var current = this.head;
     while (current.next) {
-        print(current.next.element); // don't access the "head" node
-        current = current.next; // loop to the next one
+        if (current.next.element !== 'undefined') {
+            print(current.next.element); // don't access the "head" node
+            current = current.next; // loop to the next one
+        }
     }
 };
 

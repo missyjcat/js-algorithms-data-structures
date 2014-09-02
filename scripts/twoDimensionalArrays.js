@@ -4,7 +4,8 @@
  */
 
 Array.matrix = function(numRows, numCols, initialVal) {
-    var newArr = [],
+
+    var newArray = [],
         i = 0,
         j = 0;
 
@@ -21,16 +22,30 @@ Array.matrix = function(numRows, numCols, initialVal) {
         for (j = 0; j < numCols; j++) {
             cols[j] = initialVal;
         }
-        newArr[i] = cols;
+        newArray[i] = cols;
     }
 
-    return newArr;
-}
+    return newArray;
 
-var newArray = Array.matrix(8, 8, 'hi');
-newArray[7][7] = 'hello';
-print(newArray[7][7]);
-print(newArray[7][6]);
+};
+
+function printArray(arr) {
+    var output = '',
+        i = 0,
+        j = 0;
+
+    for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr[i].length; j++) {
+            output += arr[i][j] + ' ';
+        }
+        output += '\n';
+    }
+
+    return output;
+};
+
+
+
 
 /**
  * Computing values in two-dimensional arrays is a matter of visualizing rows
@@ -59,9 +74,6 @@ Array.rowByRowFlattenArray = function(array) {
     return output;
 };
 
-var rowByRow = Array.rowByRowFlattenArray(twoDimArray);
-print(rowByRow.toString());
-
 /** 
  * This is a col by col implementation that enters a col, then loops through
  * each row value (down) and outputs a flattened version of the given array in 
@@ -82,5 +94,3 @@ Array.colByColFlattenArray = function(array) {
     return output;
 }
 
-var colByCol = Array.colByColFlattenArray(twoDimArray);
-print(colByCol.toString());
