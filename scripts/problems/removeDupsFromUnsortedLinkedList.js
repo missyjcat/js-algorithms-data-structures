@@ -55,3 +55,21 @@ print('Printing deduped list using a buffer... ');
 var deDupedList = removeDupsWithBuffer(list);
 deDupedList.display();
 print();
+
+/**
+ * Here's an implementation without a buffer allowed, using the "runner"
+ * technique.
+ */
+
+/**
+ * Iterate through the list, and with each iteration, use another iteration to
+ * compare the values up until the current iteration's position. Remove a value
+ * if it is found to be a duplicate of the current.
+ */
+
+var removeDupsWithoutBuffer = function(linkedList) {
+    var i = 0,
+        j = 0;
+
+    
+};

@@ -13,3 +13,5 @@ Some other problems to try:
 - Given an array of integers (positive or negative) find the sub-array with the largest sum.
 - Determine if a given string is a palindrome.
 - Given a large hash table whose keys are movie names and whose values are a list of actors in those movies, write a function to determine the Bacon number of a particular actor.
+- Given two nodes in a binary search tree, find the lowest common ancestor of the two nodes.
+- Design the data structures and algorithms to detect typos in a document and then provide suggestions to the user.
