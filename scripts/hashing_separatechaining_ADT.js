@@ -88,11 +88,11 @@ var betterHornersHash = function(data) {
 var put = function(key, data) {
     var pos = this.betterHash(key);
     var index = 0;
-    if (this.table[pos][0] == undefined) {
+    if (typeof this.table[pos][0] === 'undefined') {
         this.table[pos][0] = key;
         this.table[pos][1] = data;
     } else {
-        while (this.table[pos][index] !== undefined) {
+        while (typeof this.table[pos][index] !== 'undefined') {
             ++index;
         }
         this.table[pos][index] = key;
