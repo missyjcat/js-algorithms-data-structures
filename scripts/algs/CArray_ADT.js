@@ -119,7 +119,38 @@ var selectionSort = function() {
         outer = null,
         inner = null;
 
-    for (outer = 0; outer <= this.numElements; outer++) {
+    if (this.numElements < 2) {
+        return;
+    }
+
+    /**
+     * Starting with 0, increment the min variable for each pass up until 2
+     * before the length of the array (since we won't need to do a swap with
+     * the very last element -- everything will be sorted by then).
+     */
+    for (outer = 0; outer <= this.numElements - 2; outer++) {
+
+        min = outer;
+
+        /**
+         * For this value of outer, make the inner value one more than the
+         * outer (to test all elements AFTER the ones we've already tested)
+         * and go until the end of the array. If any element is less than the
+         * current (the min/outer) indexed element, set the min index to that
+         * inner and swap the outer with the min. Continue looping.
+         */
+
+        for (inner = outer + 1; inner <= this.numElements - 1; inner++) {
+            if (this.dataStore[inner] < this.dataStore[min]) {
+                min = inner;
+            }
+            swap(this.dataStore, outer, min);
+            // print('this is outer: ' + outer + ' | this is min: ' + min + ' | this is inner: ' + inner);
+            
+            
+        }
+
+        print(this.toString());
 
     }
 };

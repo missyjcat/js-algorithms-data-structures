@@ -12,3 +12,13 @@ print(mynums.toString());
 mynums.bubbleSort();
 print();
 print(mynums.toString());
+print();
+
+print('Testing selection sort...');
+var numElements = 10;
+var mynums = new CArray(numElements);
+mynums.setData();
+print(mynums.toString());
+mynums.selectionSort();
+print();
+print(mynums.toString());
