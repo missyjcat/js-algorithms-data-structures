@@ -13,6 +13,16 @@ solution in javascript. DSAJ data structures and tests are taken from the book
 but I have commented (and corrected mistakes!) on the code to ensure I am
 understanding each line thoroughly.
 
+Usage:
+======
+
+Most of the scripts with the exception of the scripts in the `inbrowser` folder
+are meant to be run using the included js executable. Just run:
+
+`./js scripts/PATH_OR_FILENAME_OF_JS_FILE`
+
+The `inbrowser` files are meant to be opened in a browser.
+
 Notes:
 ======
 
