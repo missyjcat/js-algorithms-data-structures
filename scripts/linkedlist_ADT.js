@@ -51,7 +51,7 @@ var display = function() {
 
 var findPrev = function(item) {
     var current = this.head;
-    while (current.next.element !== item && current.next !== null) {
+    while (current.next !== null && current.next.element !== item) {
         current = current.next;
     }
 

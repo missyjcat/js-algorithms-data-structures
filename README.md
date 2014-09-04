@@ -19,6 +19,7 @@ Notes:
 Some other problems to try:
 
 - Write a function that takes two sorted lists of numbers and merges them into a single sorted list.
+- Determine if a given string is an anagram of another.
 - Implement a function that finds the square root in javascript.
 - Given an array of integers (positive or negative) find the sub-array with the largest sum.
 - Determine if a given string is a palindrome.
@@ -49,6 +50,7 @@ Talking through questions:
 
 - Generally, what problem in OO development do design patterns solve? What's your favorite design pattern, and why?
 - How does a binary tree work?
+- What is your favorite JS design pattern and why?
 
 Big-O Notes
 ===========
