@@ -19,3 +19,17 @@ nums.insert(21);
 print("Inorder traversal: ");
 nums.inOrder(nums.root);
 
+var nums2 = new BST();
+nums2.insert(23);
+nums2.insert(45);
+nums2.insert(16);
+nums2.insert(37);
+nums2.insert(3);
+nums2.insert(99);
+nums2.insert(22);
+var min = nums2.getMin();
+print("\nGetting min: " + min);
+var max = nums2.getMax();
+print("\nGetting max: " + max);
+var find = nums2.find(37);
+print("\n Finding the node for 37: " + find.data);

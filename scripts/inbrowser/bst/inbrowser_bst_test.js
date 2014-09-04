@@ -16,10 +16,6 @@ var show = function() {
     return this.data;
 };
 
-var left = function() {
-
-}
-
 /**
  * Inserting a new node in the BST follows these steps: 
  * 1)  determine if there is a root node or not. If not, this is a new BST and

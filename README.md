@@ -49,3 +49,22 @@ Talking through questions:
 
 - Generally, what problem in OO development do design patterns solve? What's your favorite design pattern, and why?
 - How does a binary tree work?
+
+Big-O Notes
+===========
+
+O(1) - Determining if a number is even or odd; using a constant-size lookup table or hash table
+
+O(logn) - Finding an item in a sorted array with a binary search (finding a name in a telephone book since it's sorted - binary search)
+
+O(n) - Finding an item in an unsorted list; adding two n-digit numbers (finding a name in a telephone book iteratively given a phone number)
+
+O(n^2) - Multiplying two n-digit numbers by a simple algorithm; adding two n×n matrices; bubble sort or insertion sort
+
+O(n^3) - Multiplying two n×n matrices by simple algorithm
+
+O(c^n) - Finding the (exact) solution to the traveling salesman problem using dynamic programming; determining if two logical statements are equivalent using brute force
+
+O(n!) - Solving the traveling salesman problem via brute-force search
+
+O(n^n) - Often used instead of O(n!) to derive simpler formulas for asymptotic complexity
