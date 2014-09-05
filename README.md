@@ -29,6 +29,10 @@ Notes:
 Some other problems to try:
 
 - Write a function that takes two sorted lists of numbers and merges them into a single sorted list.
+- Given an input array and another array that describes a new index for each element, mutate the input array so that each element ends up in their new index. Discuss the runtime of the algorithm and how you can be sure there won't be any infinite loops
+- In JavaScript, write a function that takes an array as input that can contain both ints and more arrays (which can also contain an array or int) and return the flattened array.
+
+ex. [1, [2, [ [3, 4], 5], 6]] => [1, 2, 3, 4, 5, 6]
 - Determine if a given string is an anagram of another.
 - Implement a function that finds the square root in javascript.
 - Given an array of integers (positive or negative) find the sub-array with the largest sum.

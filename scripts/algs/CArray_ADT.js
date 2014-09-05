@@ -13,17 +13,29 @@ var CArray = function(numElements) {
     this.clear = clear;
     this.setData = setData;
     this.swap = swap;
+    this.gaps = [5,3,1];
+    this.setGaps = setGaps;
 
     /**
      * Simple sorting algs
      */
     this.bubbleSort = bubbleSort;
     this.selectionSort = selectionSort;
+    this.insertionSort = insertionSort;
+
+    /**
+     * Advanced sorting algs
+     */
+    this.shellSort = shellSort;
 
     for (var i = 0; i < this.numElements; i++) {
         this.dataStore[i] = i; // Not sure why we don't just initialize
                                // `this.dataStore` w/ `new Array(numElements)`
     }
+};
+
+var setGaps = function(arr) {
+    this.gaps = arr;
 };
 
 var setData = function() {
@@ -152,5 +164,79 @@ var selectionSort = function() {
 
         print(this.toString());
 
+    }
+};
+
+var insertionSort = function() {
+    var tmp = null,
+        inner = null,
+        outer = null;
+
+    for (outer = 1; outer < this.numElements; outer++) {
+        tmp = this.dataStore[outer];
+        inner = outer;
+        while (inner > 0 && this.dataStore[inner - 1] >= tmp) {
+            this.dataStore[inner] = this.dataStore[inner - 1];
+            inner--;
+        }
+        this.dataStore[inner] = tmp;
+        print(this.toString());
+    }
+};
+
+/**
+ * Shellshort is based on insertion sort but improved. Defines a gap distance
+ * that determines how far apart the elements to be compared should be. 
+ * Comparing elements that are far apart is more efficient than always
+ * comparing adjacent elements.
+ */
+
+var shellSort = function() {
+    var i,
+        j,
+        g,
+        currPos,
+        currentGap,
+        compareEl;
+
+    /**
+     * First, loop through the gaps
+     */
+    for (g = 0; g < this.gaps.length; g++) {
+        currentGap = this.gaps[g];
+
+        /**
+         * Starting at the current gap value, loop through the dataStore
+         */
+        for (i = currentGap; i < this.numElements; i++) {
+
+            /**
+             * Stash the value of the current position
+             */
+            curPos = this.dataStore[i];
+
+            /**
+             * i is iterating one by one through the datastore
+             * j is starting at i which is increasing, and decreases by the
+             * currentGap with each iteration until j is greater than or equal
+             * to the currentGap (this would happen if i gets to be almost
+             * double the currentGap) and when the element we're looking at
+             * (j - currentGap, or the compareEl) is greater than the current
+             * position. If this is the case, then put the greater element
+             * later in the array (this.dataStore[j]).
+             */
+            for (j = i; (j >= currentGap) && (this.dataStore[j - currentGap] > currPos); j -= currentGap) {
+                compareEl = this.dataStore[j - currentGap];
+                this.dataStore[j] = compareEl;
+            }
+
+            /**
+             * Once the loop is complete, the current position should be the
+             * lowest element of all compared, and so should be assigned the
+             * highest index (j)
+             */
+            this.dataStore[j] = currPos;
+        }
+        print(this.toString());
     }
 };
