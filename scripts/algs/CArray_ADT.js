@@ -213,7 +213,7 @@ var shellSort = function() {
             /**
              * Stash the value of the current position
              */
-            curPos = this.dataStore[i];
+            currPos = this.dataStore[i];
 
             /**
              * i is iterating one by one through the datastore
@@ -225,6 +225,7 @@ var shellSort = function() {
              * position. If this is the case, then put the greater element
              * later in the array (this.dataStore[j]).
              */
+
             for (j = i; (j >= currentGap) && (this.dataStore[j - currentGap] > currPos); j -= currentGap) {
                 compareEl = this.dataStore[j - currentGap];
                 this.dataStore[j] = compareEl;
@@ -240,3 +241,17 @@ var shellSort = function() {
         print(this.toString());
     }
 };
+
+// shellSort = function () {
+// for (var g = 0; g < this.gaps.length; ++g) {
+// for (var i = this.gaps[g]; i < this.dataStore.length; ++i) {
+// var temp = this.dataStore[i];
+// for (var j = i; j >= this.gaps[g] &&
+// this.dataStore[j-this.gaps[g]] > temp;
+// j -= this.gaps[g]) {
+// this.dataStore[j] = this.dataStore[j - this.gaps[g]];
+// }
+// this.dataStore[j] = temp;
+// }
+// }
+// };
