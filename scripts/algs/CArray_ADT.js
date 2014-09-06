@@ -169,6 +169,15 @@ var selectionSort = function() {
     }
 };
 
+/**
+ * O(n^2) running time
+ * Insertion sort basically compares an element with the one next to it and if
+ * it is found to be greater, moves over all the elements to the right and then
+ * inserts the original value (which is the smallest) at the position of inner
+ * after it has finished decrementing. This way, the smaller ones are inserted
+ * earlier and earlier into the list.
+ */
+
 var insertionSort = function() {
     var tmp = null,
         inner = null,
@@ -255,6 +264,8 @@ var shellSort = function() {
  * levels go too deeply. Instead, will implement bottom-up using iteration.
  *
  * Bottom-up: Break down data into 1-element arrays and slowly merge and sort
+ *
+ * O(n log n) in worst case
  */
 
 var mergeSort = function() {
@@ -334,6 +345,8 @@ var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
  * Repeat with the list of smaller and the list of larger els
  *
  * This one's a little easier to understand than the merge sort process...
+ *
+ * O(n log n) in average case, O(n^2) in worst case.
  */
 
 var quickSort = function(list) {
