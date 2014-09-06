@@ -22,6 +22,7 @@ print(mynums.toString());
 mynums.selectionSort();
 print();
 print(mynums.toString());
+print();
 
 print('Testing insertion sort...');
 var numElements = 10;
@@ -31,6 +32,7 @@ print(mynums.toString());
 mynums.insertionSort();
 print();
 print(mynums.toString());
+print();
 
 print('Testing shellsort...');
 var numElements = 10;
@@ -40,3 +42,24 @@ print(mynums.toString());
 mynums.shellSort();
 print();
 print(mynums.toString());
+print();
+
+print('Testing mergesort...');
+var numElements = 10;
+var mynums = new CArray(numElements);
+mynums.setData();
+print(mynums.toString());
+mynums.mergeSort();
+print();
+print(mynums.toString());
+print();
+
+print('Testing quickSort...');
+var numElements = 10;
+var mynums = new CArray(numElements);
+mynums.setData();
+print(mynums.toString());
+mynums.dataStore = quickSort(mynums.dataStore);
+print();
+print(mynums.toString());
+print();

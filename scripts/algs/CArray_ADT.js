@@ -27,6 +27,8 @@ var CArray = function(numElements) {
      * Advanced sorting algs
      */
     this.shellSort = shellSort;
+    this.mergeSort = mergeSort; // need to study up on this a little more..
+    this.quickSort = quickSort;
 
     for (var i = 0; i < this.numElements; i++) {
         this.dataStore[i] = i; // Not sure why we don't just initialize
@@ -189,6 +191,9 @@ var insertionSort = function() {
  * that determines how far apart the elements to be compared should be. 
  * Comparing elements that are far apart is more efficient than always
  * comparing adjacent elements.
+ *
+ * The best case for gap sets is 701, 301, 132, 57, 23, 10, 4, 1, but for
+ * this one we're just going to use [5,3,1] becaues our dataset is small.
  */
 
 var shellSort = function() {
@@ -242,16 +247,120 @@ var shellSort = function() {
     }
 };
 
-// shellSort = function () {
-// for (var g = 0; g < this.gaps.length; ++g) {
-// for (var i = this.gaps[g]; i < this.dataStore.length; ++i) {
-// var temp = this.dataStore[i];
-// for (var j = i; j >= this.gaps[g] &&
-// this.dataStore[j-this.gaps[g]] > temp;
-// j -= this.gaps[g]) {
-// this.dataStore[j] = this.dataStore[j - this.gaps[g]];
-// }
-// this.dataStore[j] = temp;
-// }
-// }
-// };
+/**
+ * Mergesort merges two sorted sublists to form a large sorted list. Space
+ * problem with large datasets: storing two large sublists.
+ *
+ * Javascript doesn't handle recursive top-down mergesort well because the
+ * levels go too deeply. Instead, will implement bottom-up using iteration.
+ *
+ * Bottom-up: Break down data into 1-element arrays and slowly merge and sort
+ */
+
+var mergeSort = function() {
+    var arr = this.dataStore;
+    if (arr.length < 2) {
+        return;
+    }
+
+    var step = 1,
+        left,
+        right;
+
+    while (step < arr.length) {
+        left = 0;
+        right = step;
+        while (right + step <= arr.length) {
+            mergeArrays(arr, left, left + step, right, right + step);
+            left = right + step;
+            right = left + step;
+        }
+        if (right < arr.length) {
+            mergeArrays(arr, left, left + step, right, arr.length);
+        }
+        step *= 2;
+    }
+};
+
+/**
+ * Utility func to merge sorted sublists back into master list
+ * @param  {Array} arr        Master array to get values from/merge back
+ * @param  {Number} startLeft  Index of where to start the left array
+ * @param  {Number} stopLeft   Index of where to stop left array
+ * @param  {Number} startRight Index of where to start right array
+ * @param  {Number} stopRight  Index of where to stop right array
+ * @return {None}            Operation done in place
+ */
+var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
+    var rightArr = new Array(stopRight - startRight + 1),
+        leftArr = new Array(stopLeft - startLeft + 1),
+        k = startRight,
+        i = 0,
+        m = 0,
+        n = 0;
+
+    for (i = 0; i < (rightArr.length - 1); i++) {
+        rightArr[i] = arr[k];
+        k++;
+    }
+
+    k = startLeft;
+
+    for (i = 0; i < (leftArr.length - 1); i++) {
+        leftArr[i] = arr[k];
+        k++;
+    }
+
+    rightArr[rightArr.length - 1] = Infinity;
+    leftArr[leftArr.length - 1] = Infinity;
+
+    for (k = startLeft; k < stopRight; k++) {
+        if (leftArr[m] <= rightArr[n]) {
+            arr[k] = leftArr[m];
+            m++;
+        } else {
+            arr[k] = rightArr[n];
+            n++;
+        }
+    }
+
+    print('left array: ' + leftArr);
+    print('right array: ' + rightArr);
+};
+
+/**
+ * Pick a pivot to divide the list (in this impl, the first array el), reorder
+ * the list so els less than pivot are placed before, greater than after
+ * Repeat with the list of smaller and the list of larger els
+ *
+ * This one's a little easier to understand than the merge sort process...
+ */
+
+var quickSort = function(list) {
+    if (list.length === 0) {
+        return [];
+    }
+
+    var lesser = [],
+        greater = [],
+        pivot = list[0], // Always choosing the first el in this recursive func
+        i = 1;
+
+    for (i = 1; i < list.length; i++) { // Starting with second el
+        if (list[i] > pivot) { // If the el is greater, put in greater array
+            greater.push(list[i]);
+        } else { // otherwise put in less than array
+            lesser.push(list[i]);
+        }
+    }
+
+    /**
+     * I first did a lesser.push(pivot); before this return statement, thinking
+     * it would just come back in the same position since it's the greatest in
+     * the lesser array. Turns out that this caused too many recursions. This
+     * is because the func will forever be sorting because the last pivot will
+     * always be put into the greater array, and the sorting will start over
+     * again.
+     */
+    return quickSort(lesser).concat(pivot, quickSort(greater));
+};
