@@ -63,3 +63,24 @@ mynums.dataStore = quickSort(mynums.dataStore);
 print();
 print(mynums.toString());
 print();
+
+print('Testing bucketSort...');
+var numElements = 100;
+var mynums = new CArray(numElements);
+mynums.setData(20);
+print(mynums.toString());
+mynums.bucketSort();
+print();
+print(mynums.toString());
+print();
+
+print('Testing binarySearch...');
+var numElements = 10;
+var mynums = new CArray(numElements);
+mynums.setData(5);
+print(mynums.toString());
+print();
+mynums.dataStore = quickSort(mynums.dataStore);
+print(mynums.toString());
+print('result is: ' + mynums.binarySearch(5));
+print();

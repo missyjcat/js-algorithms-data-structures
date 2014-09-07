@@ -20,7 +20,7 @@ var show = function() {
  * 2)  if there is already a root node, need to determine where in the tree to
  *     place this new node.
  *     Algorithm: Set the root node as the current node. If data is less than
- *	   current node, new CURRENT node is left child of current node. If new
+ *     current node, new CURRENT node is left child of current node. If new
  *     current node has a vlue of null, set this value to the new node and exit
  *     If not, repeat loop. 
  *     If data is greater than current node, set new CURRENT node to be the

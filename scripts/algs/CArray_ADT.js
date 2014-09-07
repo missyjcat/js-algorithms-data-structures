@@ -1,5 +1,3 @@
-
-
 /**
  * Array test bed to help implement sorting algs
  */
@@ -29,6 +27,13 @@ var CArray = function(numElements) {
     this.shellSort = shellSort;
     this.mergeSort = mergeSort; // need to study up on this a little more..
     this.quickSort = quickSort;
+    this.bucketSort = bucketSort;
+
+    /**
+     * Search algs
+     */
+    this.seqSearch = seqSearch;
+    this.binarySearch = binarySearch;
 
     for (var i = 0; i < this.numElements; i++) {
         this.dataStore[i] = i; // Not sure why we don't just initialize
@@ -40,12 +45,14 @@ var setGaps = function(arr) {
     this.gaps = arr;
 };
 
-var setData = function() {
+var setData = function(max) {
+
+    max = max || this.numElements;
 
     // For each number of elements, store a random number between 0 and the
     // `numElements` value + 1 and make sure they are whole integers
     for (var i = 0; i < this.numElements; i++) {
-        this.dataStore[i] = Math.floor(Math.random() * (this.numElements + 1));
+        this.dataStore[i] = Math.floor(Math.random() * (max + 1));
     }
 };
 
@@ -126,6 +133,9 @@ var bubbleSort = function() {
     }
 };
 
+/**
+ * O(n^2) average and worst case; memory O(1)
+ */
 
 var selectionSort = function() {
     var min = null,
@@ -346,7 +356,7 @@ var mergeArrays = function(arr, startLeft, stopLeft, startRight, stopRight) {
  *
  * This one's a little easier to understand than the merge sort process...
  *
- * O(n log n) in average case, O(n^2) in worst case.
+ * O(n log n) in average case, O(n^2) in worst case. Memory O(logN)
  */
 
 var quickSort = function(list) {
@@ -376,4 +386,139 @@ var quickSort = function(list) {
      * again.
      */
     return quickSort(lesser).concat(pivot, quickSort(greater));
+};
+
+/**
+ * Bucket sort wasn't in the DSAJS book, but I read about it and wanted to
+ * include its implementation here.
+ *
+ * Good for a limited range of values (domain) with lots of elements. Otherwise
+ * Quicksort or Mergesort is better.
+ */
+
+var bucketSort = function(domainMin, domainMax) {
+
+    var insertionSort = function(arr) {
+        var tmp = null,
+            inner = null,
+            outer = null;
+
+        for (outer = 1; outer < arr.length; outer++) {
+            tmp = arr[outer];
+            inner = outer;
+            while (inner > 0 && arr[inner - 1] >= tmp) {
+                arr[inner] = arr[inner - 1];
+                inner--;
+            }
+            arr[inner] = tmp;
+        }
+
+        return arr;
+    };
+
+    var i = 0,
+        buckets = [],
+        array = this.dataStore,
+        sortedArray = [];
+
+    domainMin = domainMin || 0;
+    domainMax = domainMax || array.length;
+
+    /**
+     * Could maybe improve this by defining bucket sizes if the domain spans
+     * more than 10, 100, 1000, 10000, etc.
+     *
+     * Then we would store the array values in the buckets according to their
+     * values. Eg, if the buckets were buckets[0], buckets[10], buckets[20]
+     * and so on, and there were 2M elements with a domain between 0-200, the
+     * elements would be bucketed if the value was between 0 and 10, 11 and 20,
+     * etc. And then they would be sorted within each bucket upon insertion.
+     * So insertion of 2M elements in array is O(1) time, but sorting each time
+     * is O(n log n) if we use quickSort so this would still be an O(n^2)
+     * right?
+     */
+    for (i = domainMin; i <= domainMax; i++) {
+        buckets[i] = [];
+    }
+
+    for (i = 0; i < array.length; i++) {
+        buckets[array[i]].push(array[i]);
+    }
+
+    for (i = 0; i < buckets.length; i++) {
+        sortedArray = sortedArray.concat(buckets[i]);
+    }
+
+    this.dataStore = sortedArray;
+
+};
+
+/**
+ * Sequential search is a brute force method that takes O(n) time.
+ */
+
+var seqSearch = function(data) {
+    var i = 0;
+
+    for (i = 0; i < this.dataStore.length; i++) {
+        if (this.dataStore[i] === data) {
+            return i;
+        }
+        return false;
+    }
+};
+
+/**
+ * Other ways to search data, maybe using binary tree or hashtable or linked
+ * list.
+ */
+
+/**
+ * If the data is sorted, binary search is better. Takes O(log n) time.
+ */
+
+var binarySearch = function(data) {
+    var upperBound = this.numElements - 1,
+        lowerBound = 0,
+        array = this.dataStore,
+        mid = null;
+
+    /**
+     * 
+     */
+    while (lowerBound <= upperBound) {
+
+        /**
+         * First find the middle of our current segment defined by upper- and
+         * lowerBound.
+         */
+        mid = Math.floor((upperBound + lowerBound) / 2);
+        print(mid);
+
+        /**
+         * If this middle point is less than the desired data, set the new
+         * lowerBound to this middle point + 1 since we know that the desired
+         * data is somewhere above this point (and not equal to it)
+         */
+        print(array[mid]);
+        if (array[mid] < data) {
+            lowerBound = mid + 1;
+        } else
+        /**
+         * If the middle point is greater than, set the upperBound to the mid
+         * minus 1 because we know that the data is somewhere below the mid and
+         * not the mid
+         */
+        if (array[mid] > data) {
+            upperBound = mid - 1;
+        } else {
+
+            /**
+             * In this case we have found the data and should return the index
+             * which is the mid (array[mid] === data)
+             */
+            return mid;
+        }
+    }
+    return -1; // data cannot be found at all
 };
