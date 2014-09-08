@@ -46,16 +46,16 @@ X Design the data structures and algorithms to detect typos in a document and th
 - Write a function that sums up integers from a text file, one int per line.
 - Write function to print the odd numbers from 1 to 99.
 - Find the largest int value in an int array. 
-X Format an RGB value (three 1-byte numbers) as a 6-digit hexadecimal string.
+- Format an RGB value (three 1-byte numbers) as a 6-digit hexadecimal string.
 - Design a deck of cards that can be used for different card game applications. 
 - Model the Animal kingdom as a class system, for use in a Virtual Zoo program. 
 - Create a class design to represent a filesystem. 
 - Design an OO representation to model HTML. 
+- How do you print out the nodes of a tree in level-order (i.e. first level, then 2nd level, then 3rd level, etc.) 
 
 Data structure questions:
 What are some really common data structures, e.g. in java.util? 
 Can you implement a Map with a tree? What about with a list? 
-How do you print out the nodes of a tree in level-order (i.e. first level, then 2nd level, then 3rd level, etc.) 
 What's the worst-case insertion performance of a hashtable? Of a binary tree? O(1) unless resize in necessary for hastable; O(n^2) for binary tree
 What are some options for implementing a priority queue? Can do either a normal queue where items are retrieved based on an extra key that defines
 the priority level, or you can do a heap which is a binary tree where a parent node is always greater than all its child nodes
