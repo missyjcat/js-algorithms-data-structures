@@ -1,0 +1,5 @@
+Parts of a URL
+==============
+
+<scheme>://<username>:<password>@<host>:<port>/<path>;<params>?<query params>#<fragment>
+
