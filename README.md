@@ -54,17 +54,16 @@ ex. [1, [2, [ [3, 4], 5], 6]] => [1, 2, 3, 4, 5, 6]
 
 Data structure questions:
 What are some really common data structures, e.g. in java.util? 
-When would you use a linked list vs. a vector? 
 Can you implement a Map with a tree? What about with a list? 
 How do you print out the nodes of a tree in level-order (i.e. first level, then 2nd level, then 3rd level, etc.) 
-What's the worst-case insertion performance of a hashtable? Of a binary tree? 
-What are some options for implementing a priority queue?
+What's the worst-case insertion performance of a hashtable? Of a binary tree? O(1) unless resize in necessary for hastable; O(n^2) for binary tree
+What are some options for implementing a priority queue? Can do either a normal queue where items are retrieved based on an extra key that defines
+the priority level, or you can do a heap which is a binary tree where a parent node is always greater than all its child nodes
 
 Talking through questions:
 
 - Generally, what problem in OO development do design patterns solve? What's your favorite design pattern, and why?
 - How does a binary tree work?
-- What is your favorite JS design pattern and why?
 
 Big-O Notes
 ===========

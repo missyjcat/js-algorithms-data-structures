@@ -1,0 +1,30 @@
+Generally, what problem in OO development do design patterns solve?
+===================================================================
+
+DRY:
+Patterns can help avoid repetition by providing generalized solutions to
+coding problems that occur again and again.
+
+Organization and readability:
+Using patterns sets a precedent for the way the code is meant to grow and to be
+understood. Patterns for modularity for example help break up long procedures
+but still keep them both cohesive within a problem context and/or make them
+portable to allow other contexts to leverage common solutions. The antithesis
+of "spaghetti code," patterns allow more complex applications to run on a set
+of tiny interacting gears rather than jump around haphazardly from one code
+block to another.
+
+Reliability:
+When a pattern is able to solve a problem, generally a recurrence of that
+problem can more reliably be solved using a proven method rather than writing
+different code that may be buggy.
+
+Abstraction:
+Patterns also encourage abstraction since they focus on a specific problem and
+are meant to be reused, rather than be a custom tailored solution for one
+instance of a problem.
+
+Education:
+Learning smart patterns mean that developers can then go forth and reuse the
+ones they've learned in different contexts, adapting the principles of that
+pattern and making code overall better.

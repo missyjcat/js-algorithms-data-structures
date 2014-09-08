@@ -1,0 +1,135 @@
+Factory Pattern for more complex APIs
+=====================================
+
+I like the idea of delegating the creation of new objects to the factory which
+allows for a lot of customization.
+
+One example where I used this was when refactoring our Service API class which
+basically wrapped the JQuery Ajax method with options that would be passed in
+from multiple front-end applications. 
+
+The issue was all the options, and the ways they could be overridden, made the
+Service Class definition extremely unreadable and overly complicated. Also, the
+pattern being used to instantiate service objects was also overly complex,
+requiring each service object to be a call to a `get` method which returned an
+additional config object that had a method `submit` or `fetch` that would then
+be returned as a reference using apply, so that it could accept a number of
+additional elements. I'll explain why in a minute.
+
+The front-end applications would instantiate a new service instance for each 
+API call they wanted to make and pass in many different params to customize the
+object (headers, url, API version, action, etc.) and could either use the 
+default options (like timeout, polling retries, etc.) that the Service Class 
+provided, or could override them.
+
+In addition, the calling function could also pass additional override params
+that would even override the instance that was provided by the front-end app.
+This meant that timeout could be defined in 3 different places: the default
+Service Class setting, or overridden by the instantiated object, or overridden
+by the function calling the object.
+
+So, complicated Service Class, too many places to "customize" the call, and an
+overly complicated `get` method that requires more hoop jumping to get a
+service object set up led me to using the Factory pattern to revise the way the
+Service Class was defined.
+
+I started with a Service Class that stored the default values and the
+constructor of the factory would override defaults if they were passed in as
+arguments. So there was one way to override defaults at the factory level.
+
+Then, I created a createSubmit and a createFetch method, which created the
+actual service objects. They could also pass in override params, say for
+example we wanted a call to the same API service but in one place of the app
+we wanted a longer timeout. We could do the following:
+
+api.Person = $st.core.services.create({
+     config: for Service object
+});
+api.Person.get = new api.Person.createFetch({});
+api.Person.getLong = new api.Person.createFetch({timeout: 99999999999});
+
+So instead of the application just passing in a longer timeout at some point,
+which makes it hard for another developer because they would have to go through
+the whole application to get a handle on what all the API calls were doing, all
+the service definitions can be in one place and the application can just call
+whichever one they needed.
+
+
+Module Pattern or Constructor Pattern with prototypes for modularizing code
+===========================================================================
+
+For larger applications, I like to break the code up and haven't decided
+between Revealing Module pattern or just a Constructor Pattern using 
+prototypes.
+
+Like the idea of private methods, but nothing is really that private in
+javascript. Also may be tough for unit testing private functions if need to.
+
+var myRevealingModule = (function () {
+ 
+        var privateVar = "Ben Cherry",
+            publicVar  = "Hey there!";
+ 
+        function privateFunction() {
+            console.log( "Name:" + privateVar );
+        }
+ 
+        function publicSetName( strName ) {
+            privateVar = strName;
+        }
+ 
+        function publicGetName() {
+            privateFunction();
+        }
+ 
+ 
+        // Reveal public pointers to
+        // private functions and properties
+ 
+        return {
+            setName: publicSetName,
+            greeting: publicVar,
+            getName: publicGetName
+        };
+ 
+    })();
+ 
+myRevealingModule.setName( "Paul Kinlan" );
+
+Constructor pattern is nice because all the functions are accessible which I
+like when debugging code. I also like the visual semantics of using _ when
+defining functions that are meant to be private, and conventions like _init.
+
+/** 
+ * Overlap class defines properties and methods of an overlap
+ * between two Items
+ * @param {String} start - Numeric string indicating start time of
+ * overlap as difference from calendar start
+ * @param {String} end - Numeric string indicating end time of
+ * overlaps difference from calendar start
+ */
+
+var Overlap = function(start, end) {
+    Overlap.counter = (Overlap.counter || 0) + 1;
+    this._init.apply(this, arguments);
+};
+
+Overlap.prototype._init = function(start, end) {
+    this.start = start;
+    this.end = end;
+    this.members = [];
+    this.id = Overlap.counter;
+    this.memberPositions = {};
+};
+
+/** 
+ * Adds an item as a member of this Overlap, updates overlap and
+ * item properties
+ * @param {Object} item - Item instance
+ */
+
+Overlap.prototype.addItem = function(item) {
+    var i = 1,
+        overlapPosition = 0;
+        ...
+};
