@@ -21,12 +21,13 @@ What you learned
 Most Interesting
 
 
-  1. Location Selector/consolidation mech
-  2. Raffle/Book fulfillment at Intel (Drupal module development)
-  3. NodeDiff
-  4. Learning Cordova
-  5. Putting together my Linode
-  6. Service refactor
+   * Location Selector/consolidation mech
+   * Internationlization of our Drupal site
+   * Raffle/Book fulfillment at Intel (Drupal module development)
+   * NodeDiff
+   * Learning Cordova
+   * Putting together my Linode
+   * Service refactor
 
 
 
@@ -43,7 +44,7 @@ Enjoyed Most
 
 
    * Designing first MVC app from scratch (mobile checkout)
-   * Facebook Puzzle
+   * Facebook Puzzle - needed a MVVM so taught myself basics of Angular in a day or two
    * Location Selector/consolidation mechanism
    * Enableher the first round and what I learned
 
