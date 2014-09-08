@@ -1,0 +1,52 @@
+Most Challenging
+
+
+   * Intel website
+   * Jasper Engines
+   * Learning ST MVC
+   * NodeDiff
+
+
+
+What you learned
+
+
+   * Drupal, server management, working with difficult clients and tough deadlines
+   * Dojo, meaning of async hell
+   * Unit testing, MVC frameworks
+   * Python
+
+
+
+Most Interesting
+
+
+  1. Location Selector/consolidation mech
+  2. Raffle/Book fulfillment at Intel (Drupal module development)
+  3. NodeDiff
+  4. Learning Cordova
+  5. Putting together my Linode
+  6. Service refactor
+
+
+
+Hardest Bug
+
+
+   * NodeDiff was broken - fix without person there
+   * Spinner bug on mobile
+   * PHP session bug
+
+
+
+Enjoyed Most
+
+
+   * Designing first MVC app from scratch (mobile checkout)
+   * Facebook Puzzle
+   * Location Selector/consolidation mechanism
+   * Enableher the first round and what I learned
+
+
+Conflicts with teammates
+   * Time when I confronted someone about writing my code for me
