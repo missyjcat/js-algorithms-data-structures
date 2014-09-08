@@ -54,6 +54,8 @@ the whole application to get a handle on what all the API calls were doing, all
 the service definitions can be in one place and the application can just call
 whichever one they needed.
 
+Also, easy to extend.
+
 
 Module Pattern or Constructor Pattern with prototypes for modularizing code
 ===========================================================================
@@ -99,6 +101,8 @@ myRevealingModule.setName( "Paul Kinlan" );
 Constructor pattern is nice because all the functions are accessible which I
 like when debugging code. I also like the visual semantics of using _ when
 defining functions that are meant to be private, and conventions like _init.
+Also like this because it's easier to extend. And you know what interface
+methods are available because they are not prefixed with a _.
 
 /** 
  * Overlap class defines properties and methods of an overlap
