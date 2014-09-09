@@ -3,3 +3,33 @@ Parts of a URL
 
 <scheme>://<username>:<password>@<host>:<port>/<path>;<params>?<query params>#<fragment>
 
+User-Agent
+==========
+
+Request is sent by a User-Agent, which can be a browser, crawler/spider/robot, screen reader,
+program (cURL, wget), or a script.
+
+HTTP Method
+===========
+
+GET
+Character limit, primarily made through the URL
+
+POST
+Request through the URL but the data is usually sent through the headers; common in forms for
+large chunks of data, no char limit.
+
+HEAD
+A request that the response should only contain headers
+
+Headers
+=======
+
+Contain information about the request, user env, capabilities, user-agent id.
+User agent header is not usually accurate
+
+DNS Server
+==========
+
+Directory of names and their IP addresses. Helps User-Agents resolve IP addresses from URLs.
+Host server passes request to webserver

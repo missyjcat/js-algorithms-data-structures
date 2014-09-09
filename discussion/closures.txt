@@ -1,0 +1,21 @@
+Two examples of closures:
+
+In the Revealing Module pattern, the function returns an object that allows
+variables and functions that are internally scoped to exist outside the
+scoping function:
+
+var someModule = function() {
+     var privateVar = 39;
+     var publicVar = 'jim';
+     var publicMethod = function() {
+        console.log(privateVar);
+     };
+
+     return {
+        myName : publicVar,
+        sayAge : publicMethod
+     };
+};
+
+Instantiating someModule with the new keyword would give that new object
+access to the variables that are exposed through the return statement.
