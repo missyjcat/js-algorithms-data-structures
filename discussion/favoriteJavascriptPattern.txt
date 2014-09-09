@@ -65,7 +65,7 @@ between Revealing Module pattern or just a Constructor Pattern using
 prototypes.
 
 Like the idea of private methods, but nothing is really that private in
-javascript. Also may be tough for unit testing private functions if need to.
+javascript.
 
 var myRevealingModule = (function () {
  
